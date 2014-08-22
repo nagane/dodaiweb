@@ -1,6 +1,19 @@
 class DodesusController < ApplicationController
   before_action :set_dodesu, only: [:show, :edit, :update, :destroy]
 
+  def imageupload 
+    @dodesu = Dodesu.new
+  end
+
+  def imageupload_process
+    @dodesu = Dodesu.find(params[:id])
+    if @dodesu.update(params.require(:dodesu).permit(:data))
+      render text: 'success!'
+    else
+      render text: @dodesu.errors.full_messages[0]
+    end
+  end
+
   # GET /dodesus
   # GET /dodesus.json
   def index
