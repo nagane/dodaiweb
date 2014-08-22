@@ -1,7 +1,7 @@
 class Dodesu < ActiveRecord::Base
 
   def data=(data)
-    self.ctype = data.content_type
+    self.image_content_type = data.content_type
     self.image = data.read
   end
   

@@ -38,6 +38,8 @@ class DodesusController < ApplicationController
   # POST /dodesus.json
   def create
     @dodesu = Dodesu.new(dodesu_params)
+    #@dodesu.image = params[:dodesus][:image].read
+    #@dodesu.image_content_type = params[:dodesus][:image].content_type
 
     respond_to do |format|
       if @dodesu.save
@@ -82,6 +84,6 @@ class DodesusController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dodesu_params
-      params.require(:dodesu).permit(:name, :image)
+      params.require(:dodesu).permit(:name)
     end
 end
