@@ -1,0 +1,27 @@
+<h1>Listing dodesus</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dodesus.each do |dodesu| %>
+      <tr>
+        <td><%= dodesu.name %></td>
+        <td><%= dodesu.image %></td>
+        <td><%= link_to 'Show', dodesu %></td>
+        <td><%= link_to 'Edit', edit_dodesu_path(dodesu) %></td>
+        <td><%= link_to 'Destroy', dodesu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dodesu', new_dodesu_path %>
