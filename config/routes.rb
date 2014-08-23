@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :dodesus
+  resources :dodesus do
+    member { get :image }
+  end
 
   root 'static_pages#home'
 

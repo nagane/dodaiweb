@@ -1,5 +1,10 @@
 class DodesusController < ApplicationController
-  before_action :set_dodesu, only: [:show, :edit, :update, :destroy]
+  before_action :set_dodesu, only: [:show, :edit, :update, :destroy, :image]
+
+  def image
+    send_data(@dodesu.image, type: @dodesu.image_content_type, disposition: :inline)
+    #send_data(@user.icon, type: @user.icon_content_type, disposition: :inline)
+  end
 
   def imageupload 
     @dodesu = Dodesu.new
@@ -38,8 +43,8 @@ class DodesusController < ApplicationController
   # POST /dodesus.json
   def create
     @dodesu = Dodesu.new(dodesu_params)
-    #@dodesu.image = params[:dodesus][:image].read
-    #@dodesu.image_content_type = params[:dodesus][:image].content_type
+    @dodesu.image = params[:dodesu][:image].read
+    @dodesu.image_content_type = params[:dodesu][:image].content_type
 
     respond_to do |format|
       if @dodesu.save

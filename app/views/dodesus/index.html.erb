@@ -13,7 +13,7 @@
     <% @dodesus.each do |dodesu| %>
       <tr>
         <td><%= dodesu.name %></td>
-        <td><%= dodesu.image %></td>
+        <td><%= image_tag image_dodesu_path(dodesu) %></td>
         <td><%= link_to 'Show', dodesu %></td>
         <td><%= link_to 'Edit', edit_dodesu_path(dodesu) %></td>
         <td><%= link_to 'Destroy', dodesu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
