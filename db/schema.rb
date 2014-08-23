@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140822122023) do
   create_table "dodesus", force: true do |t|
     t.string   "name"
     t.binary   "image"
+    t.string   "image_content_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

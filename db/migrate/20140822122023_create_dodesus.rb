@@ -3,6 +3,7 @@ class CreateDodesus < ActiveRecord::Migration
     create_table :dodesus do |t|
       t.string :name
       t.binary :image
+      t.string :image_content_type
 
       t.timestamps
     end
