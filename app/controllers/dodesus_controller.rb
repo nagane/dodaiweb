@@ -6,19 +6,6 @@ class DodesusController < ApplicationController
     #send_data(@user.icon, type: @user.icon_content_type, disposition: :inline)
   end
 
-  def imageupload 
-    @dodesu = Dodesu.new
-  end
-
-  def imageupload_process
-    @dodesu = Dodesu.find(params[:id])
-    if @dodesu.update(params.require(:dodesu).permit(:data))
-      render text: 'success!'
-    else
-      render text: @dodesu.errors.full_messages[0]
-    end
-  end
-
   # GET /dodesus
   # GET /dodesus.json
   def index
