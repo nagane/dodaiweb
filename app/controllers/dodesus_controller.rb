@@ -3,7 +3,6 @@ class DodesusController < ApplicationController
 
   def image
     send_data(@dodesu.image, type: @dodesu.image_content_type, disposition: :inline)
-    #send_data(@user.icon, type: @user.icon_content_type, disposition: :inline)
   end
 
   # GET /dodesus
