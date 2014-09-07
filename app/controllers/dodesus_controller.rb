@@ -5,6 +5,11 @@ class DodesusController < ApplicationController
     send_data(@dodesu.image, type: @dodesu.image_content_type, disposition: :inline)
   end
 
+  def rdmimg
+    @dodesu = Dodesu.find(5)
+    send_data(@dodesu.image, type: @dodesu.image_content_type, disposition: :inline)
+  end
+
   # GET /dodesus
   # GET /dodesus.json
   def index

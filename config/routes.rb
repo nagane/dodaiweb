@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   resources :dodesus do
     member { get :image }
+    collection { get :rdmimg }
   end
 
   root 'static_pages#home'
