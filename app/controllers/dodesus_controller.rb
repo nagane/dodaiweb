@@ -6,8 +6,9 @@ class DodesusController < ApplicationController
   end
 
   def rdmimg
-    @dodesu = Dodesu.find(2)
-    send_data(@dodesu.image, type: @dodesu.image_content_type, disposition: :inline)
+    @dodesu = Dodesu.all
+    @random_display = @dodesu.sample
+    send_data(@random_display.image, type: @random_display.image_content_type, disposition: :inline)
   end
 
   # GET /dodesus
