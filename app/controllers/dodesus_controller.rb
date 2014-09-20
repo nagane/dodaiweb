@@ -6,7 +6,7 @@ class DodesusController < ApplicationController
   end
 
   def rdmimg
-    @dodesu = Dodesu.find(5)
+    @dodesu = Dodesu.find(2)
     send_data(@dodesu.image, type: @dodesu.image_content_type, disposition: :inline)
   end
 

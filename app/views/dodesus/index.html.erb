@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Id</th>
       <th>Name</th>
       <th>Image</th>
       <th colspan="3"></th>
@@ -12,6 +13,7 @@
   <tbody>
     <% @dodesus.each do |dodesu| %>
       <tr>
+        <td><%= dodesu.id %></td>
         <td><%= dodesu.name %></td>
         <td><%= image_tag image_dodesu_path(dodesu) %></td>
         <td><%= link_to 'Show', dodesu %></td>
