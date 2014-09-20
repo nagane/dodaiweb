@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Id</th>
       <th>Image</th>
       <th>Image content type</th>
       <th colspan="3"></th>
@@ -12,8 +13,8 @@
   <tbody>
     <% @dames.each do |dame| %>
       <tr>
-        <td><%= dame.image %></td>
-        <td><%= dame.image_content_type %></td>
+        <td><%= dame.id %></td>
+        <td><%= image_tag image_dame_path(dame) %></td>
         <td><%= link_to 'Show', dame %></td>
         <td><%= link_to 'Edit', edit_dame_path(dame) %></td>
         <td><%= link_to 'Destroy', dame, method: :delete, data: { confirm: 'Are you sure?' } %></td>

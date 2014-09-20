@@ -1,5 +1,15 @@
 class DamesController < ApplicationController
-  before_action :set_dame, only: [:show, :edit, :update, :destroy]
+  before_action :set_dame, only: [:show, :edit, :update, :destroy, :image]
+
+  def image
+    send_data(@dame.image, type: @dame.image_content_type, disposition: :inline)
+  end
+
+  def rdmimg
+    @dame = Dame.all
+    @random_display = @dame.sample
+    send_data(@random_display.image, type: @random_display.image_content_type, disposition: :inline)
+  end
 
   # GET /dames
   # GET /dames.json
@@ -25,6 +35,8 @@ class DamesController < ApplicationController
   # POST /dames.json
   def create
     @dame = Dame.new(dame_params)
+    @dame.image = params[:dame][:image].read
+    @dame.image_content_type = params[:dame][:image].content_type
 
     respond_to do |format|
       if @dame.save
@@ -69,6 +81,6 @@ class DamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dame_params
-      params.require(:dame).permit(:image, :image_content_type)
+      params.require(:dame).permit(:id)
     end
 end
