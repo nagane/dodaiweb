@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :dames
+
   resources :dodesus do
     member { get :image }
     collection { get :rdmimg }

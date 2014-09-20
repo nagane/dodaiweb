@@ -1,0 +1,25 @@
+<%= form_for(@dame) do |f| %>
+  <% if @dame.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dame.errors.count, "error") %> prohibited this dame from being saved:</h2>
+
+      <ul>
+      <% @dame.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.text_field :image %>
+  </div>
+  <div class="field">
+    <%= f.label :image_content_type %><br>
+    <%= f.text_field :image_content_type %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
