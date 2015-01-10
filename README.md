@@ -26,6 +26,8 @@ $ bundle install
 
 $ cp database.yml.sample database.yml
 
+$ rake db:create
+
 $ rake db:migrate
 
 $ rails s
