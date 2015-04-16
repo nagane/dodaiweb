@@ -44,4 +44,4 @@ To reckless Manager
 
 ### Shintyoku dame desu
 
-enjoy work life!
+enjoy work life!!
