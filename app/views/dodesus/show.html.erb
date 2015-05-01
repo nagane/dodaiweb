@@ -1,14 +1,23 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Dodesu -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @dodesu.name %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @dodesu.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:image) %>:</strong></dt>
+  <dd><%= image_tag image_dodesu_path(@dodesu) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:image_content_type) %>:</strong></dt>
+  <dd><%= @dodesu.image_content_type %></dd>
+</dl>
 
-<p>
-  <strong>IMAGE:</strong>
-  <%= image_tag image_dodesu_path(@dodesu) %>
-</p>
-
-<%= link_to 'Edit', edit_dodesu_path(@dodesu) %> |
-<%= link_to 'Back', dodesus_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              dodesus_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_dodesu_path(@dodesu), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              dodesu_path(@dodesu),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

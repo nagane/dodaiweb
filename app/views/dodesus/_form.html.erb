@@ -1,25 +1,45 @@
-<%= form_for(@dodesu) do |f| %>
-  <% if @dodesu.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@dodesu.errors.count, "error") %> prohibited this dodesu from being saved:</h2>
+<%= form_for @dodesu, :html => { :class => "form-horizontal dodesu" } do |f| %>
 
-      <ul>
-      <% @dodesu.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @dodesu.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@dodesu.errors.count, "error") %> prohibited this dodesu from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @dodesu.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@dodesu[:name]) %>
   </div>
-  <div class="field">
-    <%= f.label :image %><br>
-    <%= f.file_field :image %>
+  <div class="control-group">
+    <%= f.label :image, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.file_field :image, :class => 'form-control' %>
+    </div>
+    <%= error_span(@dodesu[:image]) %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="control-group">
+    <%= f.label :image_content_type, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :image_content_type, :class => 'form-control' %>
+    </div>
+    <%= error_span(@dodesu[:image_content_type]) %>
   </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            dodesus_path, :class => 'btn btn-default' %>
+
 <% end %>
