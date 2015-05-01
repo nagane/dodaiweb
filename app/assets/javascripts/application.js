@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require_tree .
 
-*= require twitter/bootstrap
-*= require_self
-*= require_tree .
+//herokuでボタンがつかない現象の解決策のためやったけど意味なかったから一旦コメントアウト$
+//*= require twitter/bootstrap
+//*= require_self
+//*= require_tree .
