@@ -13,12 +13,14 @@ class DodesusController < ApplicationController
     @dodesu.image = resized.to_blob
   end
 
+  # 本当は画像のみを表示させるためだけのURL用に作成したメソッド
   def image
     # なぜかここで表示する画像のサムネ作ってる。まじでここで何でindexとかに反映されるか謎
     resize_image_rate
     send_data(@dodesu.image, type: @dodesu.image_content_type, disposition: :inline)
   end
   
+  # imageが画像小さくなっちゃったからフルサイズ用のURL。でも何でこれでフルサイズで表示されるのかも謎
   def image_full
     send_data(@dodesu.image, type: @dodesu.image_content_type, disposition: :inline)
   end
@@ -38,11 +40,6 @@ class DodesusController < ApplicationController
   # GET /dodesus/1
   # GET /dodesus/1.json
   def show
-    #@dodesus=Dodesu.all
-    #@dodesu.image = @dodesus.sample[:image]
-
-    #img = Magick::Image.from_blob(@dodesu.image).shift
-    #@dodesu.image = img.resize_to_fill!(100,100).to_blob
   end
 
   # GET /dodesus/new
