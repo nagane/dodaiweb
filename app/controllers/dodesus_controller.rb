@@ -1,7 +1,25 @@
 class DodesusController < ApplicationController
-  before_action :set_dodesu, only: [:show, :edit, :update, :destroy, :image]
+  before_action :set_dodesu, only: [:show, :edit, :update, :destroy, :image,:image_full]
+
+  def resize_image_fix
+    img = Magick::Image.from_blob(@dodesu.image).shift
+    @dodesu.image = img.resize_to_fill!(500,500).to_blob
+  end
+
+  def resize_image_rate
+    img = Magick::Image.from_blob(@dodesu.image).shift
+    ration = 300.0 / img.columns
+    resized = img.resize(ration)
+    @dodesu.image = resized.to_blob
+  end
 
   def image
+    # なぜかここで表示する画像のサムネ作ってる。まじでここで何でindexとかに反映されるか謎
+    resize_image_rate
+    send_data(@dodesu.image, type: @dodesu.image_content_type, disposition: :inline)
+  end
+  
+  def image_full
     send_data(@dodesu.image, type: @dodesu.image_content_type, disposition: :inline)
   end
 
@@ -20,6 +38,11 @@ class DodesusController < ApplicationController
   # GET /dodesus/1
   # GET /dodesus/1.json
   def show
+    #@dodesus=Dodesu.all
+    #@dodesu.image = @dodesus.sample[:image]
+
+    #img = Magick::Image.from_blob(@dodesu.image).shift
+    #@dodesu.image = img.resize_to_fill!(100,100).to_blob
   end
 
   # GET /dodesus/new
@@ -83,4 +106,5 @@ class DodesusController < ApplicationController
     def dodesu_params
       params.require(:dodesu).permit(:name)
     end
+
 end
