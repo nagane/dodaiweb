@@ -20,3 +20,5 @@
 //*= require twitter/bootstrap
 //*= require_self
 //*= require_tree .
+
+//= require jquery.turbolinks
