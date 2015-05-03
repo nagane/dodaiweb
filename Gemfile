@@ -57,3 +57,8 @@ gem 'twitter-bootstrap-rails' # Bootstrapの本体
 
 # create thumbnail
 gem 'rmagick'
+
+# need heroku execute rails 4
+group :production do
+  gem 'rails_12factor'
+end
