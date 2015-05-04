@@ -22,8 +22,6 @@
         <td><%= link_to image_tag(thumbnail_image_dodesu_path(dodesu)), dodesu_path(dodesu) %></td>
         <td><%= dodesu.image_content_type %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_dodesu_path(dodesu), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       dodesu_path(dodesu),
                       :method => :delete,
