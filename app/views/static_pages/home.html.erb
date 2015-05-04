@@ -1,10 +1,9 @@
-<h1>home</h1>
-<p>sintyoku dodesuka</p>
+    <tr>
+    <% @dodesu.each do |dodesu| %>
+        <td><%= link_to image_tag(image_dodesu_path(dodesu)), dodesu_path(dodesu) %></td>
+    <% end %>
+  </tr>
+  <br>
+<p><%= link_to '進捗どうですか？', dodesus_path %></p>
+<p><%= link_to 'ダメです', dames_path %></p>
 <br>
-<br>
-<h1><%= link_to '進捗どうですかあああ？？', dodesus_path %></h1><br>
-<h1><%= link_to '全然ダメです', dames_path %></h1>
-<br>
-<br>
-<%= image_tag 'https://dl-web.dropbox.com/s/497hf9on18mxth0/shintyoku-001.jpg' %>
-</div>

@@ -3,12 +3,12 @@ class DodesusController < ApplicationController
 
   def resize_image_fix
     img = Magick::Image.from_blob(@dodesu.image).shift
-    @dodesu.image = img.resize_to_fill!(500,500).to_blob
+    @dodesu.image = img.resize_to_fill!(250,250).to_blob
   end
 
   def resize_image_rate
     img = Magick::Image.from_blob(@dodesu.image).shift
-    ration = 300.0 / img.columns
+    ration = 200.0 / img.columns
     resized = img.resize(ration)
     @dodesu.image = resized.to_blob
   end
@@ -16,7 +16,8 @@ class DodesusController < ApplicationController
   # 本当は画像のみを表示させるためだけのURL用に作成したメソッド
   def image
     # なぜかここで表示する画像のサムネ作ってる。まじでここで何でindexとかに反映されるか謎
-    resize_image_rate
+   # resize_image_rate
+    resize_image_fix
     send_data(@dodesu.image, type: @dodesu.image_content_type, disposition: :inline)
   end
   
