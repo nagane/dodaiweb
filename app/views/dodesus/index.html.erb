@@ -1,27 +1,26 @@
 <%- model_class = Dodesu -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %>
+  <%= link_to t('.new', :default => t("helpers.links.new")),
+            new_dodesu_path,
+            :class => 'btn btn-primary' %>
+  </h1>
 </div>
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:image) %></th>
       <th><%= model_class.human_attribute_name(:image_content_type) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @dodesus.each do |dodesu| %>
       <tr>
-        <td><%= link_to dodesu.id, dodesu_path(dodesu) %></td>
         <td><%= dodesu.name %></td>
-        <%# <td><%= dodesu.image %></td> >
-        <td><%= image_tag image_dodesu_path(dodesu) %></td>
+        <td><%= link_to image_tag(thumbnail_image_dodesu_path(dodesu)), dodesu_path(dodesu) %></td>
         <td><%= dodesu.image_content_type %></td>
-        <td><%=l dodesu.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_dodesu_path(dodesu), :class => 'btn btn-default btn-xs' %>
@@ -36,6 +35,3 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_dodesu_path,
-            :class => 'btn btn-primary' %>
