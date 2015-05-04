@@ -1,21 +1,30 @@
-<%= form_for(@dame) do |f| %>
-  <% if @dame.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@dame.errors.count, "error") %> prohibited this dame from being saved:</h2>
+<%= form_for @dame, :html => { :class => "form-horizontal dame" } do |f| %>
 
-      <ul>
-      <% @dame.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @dame.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@dame.errors.count, "error") %> prohibited this dame from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @dame.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :image %><br>
-    <%= f.file_field :image %>
+  <div class="control-group">
+    <%= f.label :image, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.file_field :image, :class => 'form-control' %>
+    </div>
+    <%= error_span(@dame[:image]) %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            dames_path, :class => 'btn btn-default' %>
+
 <% end %>

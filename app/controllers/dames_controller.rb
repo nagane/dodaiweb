@@ -1,7 +1,32 @@
 class DamesController < ApplicationController
-  before_action :set_dame, only: [:show, :edit, :update, :destroy, :image]
+  before_action :set_dame, only: [:show, :edit, :update, :destroy, :image,:image_full,:thumbnail_image]
 
+  def resize_image_fix
+    img = Magick::Image.from_blob(@dame.image).shift
+    @dame.image = img.resize_to_fill!(250,250).to_blob
+  end
+
+  def resize_image_rate
+    img = Magick::Image.from_blob(@dame.image).shift
+    ration = 700.0 / img.columns
+    resized = img.resize(ration)
+    @dame.image = resized.to_blob
+  end
+
+  # 詳細画面用
   def image
+    resize_image_rate
+    send_data(@dame.image, type: @dame.image_content_type, disposition: :inline)
+  end
+
+  # サムネイル表示用
+  def thumbnail_image
+    resize_image_fix
+    send_data(@dame.image, type: @dame.image_content_type, disposition: :inline)
+  end
+
+  # フルサイズ用
+  def image_full
     send_data(@dame.image, type: @dame.image_content_type, disposition: :inline)
   end
 

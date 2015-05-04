@@ -1,14 +1,14 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Dame -%>
+<div class="page-header">
+  <h1>Shintyoku dame</h1>
+</div>
 
-<p>
-  <strong>Image:</strong>
-  <%= image_tag image_dame_path(@dame) %>
-</p>
+<dl class="dl-horizontal">
+  <%= link_to image_tag(image_dame_path(@dame)), image_full_dame_path(@dame), :target=>["_blank"] %>
+</dl>
 
-<p>
-  <strong>Image content type:</strong>
-  <%= @dame.image_content_type %>
-</p>
-
-<%= link_to 'Edit', edit_dame_path(@dame) %> |
-<%= link_to 'Back', dames_path %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              dame_path(@dame),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

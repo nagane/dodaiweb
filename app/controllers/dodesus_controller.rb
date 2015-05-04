@@ -108,5 +108,4 @@ class DodesusController < ApplicationController
     def dodesu_params
       params.require(:dodesu).permit(:name)
     end
-
 end
