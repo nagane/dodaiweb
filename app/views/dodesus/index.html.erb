@@ -9,18 +9,15 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:image) %></th>
-      <th><%= model_class.human_attribute_name(:image_content_type) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @dodesus.each do |dodesu| %>
       <tr>
-        <td><%= dodesu.name %></td>
+        <td><%= dodesu.id %></td>
         <td><%= link_to image_tag(thumbnail_image_dodesu_path(dodesu)), dodesu_path(dodesu) %></td>
-        <td><%= dodesu.image_content_type %></td>
         <td>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       dodesu_path(dodesu),
