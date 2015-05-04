@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :dodesus do
     member { get :image }
     member { get :image_full }
+    member { get :thumbnail_image }
     collection { get :rdmimg }
   end
 
