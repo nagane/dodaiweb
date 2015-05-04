@@ -1,20 +1,17 @@
-<div class="page-headee">
-  <h1>shintyoku dodesuka?</h1>
+<div class="navbar">
+  <h2>do?</h2>
 </div>
-  <tr>
-    <% @dodesu.each do |dodesu| %>
-        <td><%= link_to image_tag(thumbnail_image_dodesu_path(dodesu)), dodesu_path(dodesu) %></td>
-    <% end %>
-  </tr>
-  <br>
-<div class="page-headee">
-  <h1>shintyoku dame</h1>
+<tr>
+  <% @dodesu.each do |dodesu| %>
+      <td><%= link_to image_tag(thumbnail_image_dodesu_path(dodesu)), dodesu_path(dodesu) %></td>
+  <% end %>
+</tr>
+<br>
+<div class="navbar">
+  <h2>dame</h2>
 </div>
-  <tr>
-    <% @dame.each do |dame| %>
-        <td><%= link_to image_tag(thumbnail_image_dame_path(dame)), dame_path(dame) %></td>
-    <% end %>
-  </tr>
-  <br>
-<p><%= link_to '進捗どうですか？', dodesus_path %></p>
-<p><%= link_to 'ダメです', dames_path %></p>
+<tr>
+  <% @dame.each do |dame| %>
+      <td><%= link_to image_tag(thumbnail_image_dame_path(dame)), dame_path(dame) %></td>
+  <% end %>
+</tr>
