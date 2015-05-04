@@ -1,5 +1,5 @@
 class DodesusController < ApplicationController
-  before_action :set_dodesu, only: [:show, :edit, :update, :destroy, :image,:image_full]
+  before_action :set_dodesu, only: [:show, :edit, :update, :destroy, :image,:image_full,:thumbnail_image]
 
   def resize_image_fix
     img = Magick::Image.from_blob(@dodesu.image).shift
@@ -8,20 +8,24 @@ class DodesusController < ApplicationController
 
   def resize_image_rate
     img = Magick::Image.from_blob(@dodesu.image).shift
-    ration = 200.0 / img.columns
+    ration = 700.0 / img.columns
     resized = img.resize(ration)
     @dodesu.image = resized.to_blob
   end
 
-  # 本当は画像のみを表示させるためだけのURL用に作成したメソッド
+  # 詳細画面用
   def image
-    # なぜかここで表示する画像のサムネ作ってる。まじでここで何でindexとかに反映されるか謎
-   # resize_image_rate
+    resize_image_rate
+    send_data(@dodesu.image, type: @dodesu.image_content_type, disposition: :inline)
+  end
+
+  # サムネイル表示用
+  def thumbnail_image
     resize_image_fix
     send_data(@dodesu.image, type: @dodesu.image_content_type, disposition: :inline)
   end
   
-  # imageが画像小さくなっちゃったからフルサイズ用のURL。でも何でこれでフルサイズで表示されるのかも謎
+  # フルサイズ用
   def image_full
     send_data(@dodesu.image, type: @dodesu.image_content_type, disposition: :inline)
   end
