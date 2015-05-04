@@ -12,7 +12,7 @@
 </div>
   <tr>
     <% @dame.each do |dame| %>
-        <td><%= link_to image_tag(thumbnail_image_dame_path(dame)), dodesu_path(dame) %></td>
+        <td><%= link_to image_tag(thumbnail_image_dame_path(dame)), dame_path(dame) %></td>
     <% end %>
   </tr>
   <br>
