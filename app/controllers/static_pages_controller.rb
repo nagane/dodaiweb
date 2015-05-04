@@ -3,6 +3,7 @@ class StaticPagesController < ApplicationController
 
   def home
       @dodesu = Dodesu.order(created_at: :desc).limit(10)
+      @dame = Dame.order(created_at: :desc).limit(10)
   end
 
 end
