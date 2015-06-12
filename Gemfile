@@ -62,3 +62,8 @@ gem 'rmagick'
 group :production do
   gem 'rails_12factor'
 end
+
+# Github login
+
+gem 'devise'
+gem 'omniauth-github'
