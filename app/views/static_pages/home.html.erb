@@ -19,3 +19,9 @@
 <br>
 <a href="https://github.com/nagane/dodaiweb" target="_brank">source code</a>
 <a href="https://github.com/nagane" target="_brank">contact as</a>
+<br>
+<% if user_signed_in? %>
+  sign in now
+<% else %>
+  <%= link_to "sign in with github", user_omniauth_authorize_path(:github) %>
+<% end %>

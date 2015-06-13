@@ -7,12 +7,30 @@ class User < ActiveRecord::Base
   #devise :database_authenticatable, :registerable,
   #       :recoverable, :rememberable, :trackable, :validatable
 
-  #
-  # qiitaの記事を参考に書いてるやつ
-  # http://qiita.com/awakia/items/03dd68dea5f15dc46c15
-  has_many :social_profiles, dependent: :destroy
-  devise :omniauthable
-  def social_profile(provider)
-    social_profiles.select{ |sp| sp.provider == provider.to_s }.first
+  # qiitaの記事を参考
+  # http://qiita.com/kami30k/items/94aec2d94a2b4e9a1d0b
+
+  devise :omniauthable, omniauth_providers: [:github]
+
+  def self.find_for_oauth(auth)
+    user = User.where(uid: auth.uid, provider: auth.provider).first
+
+    unless user
+      user = User.create(
+        uid:      auth.uid,
+        provider: auth.provider,
+        email:    User.dummy_email(auth),
+        #password: Devise.friendly_token[0, 20]
+      )
+    end
+
+    user
   end
+
+  private
+
+  def self.dummy_email(auth)
+    "#{auth.uid}-#{auth.provider}@example.com"
+  end
+  
 end

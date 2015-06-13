@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  #devise_for :user
-  
   resources :dames do
     member { get :image }
     member { get :image_full }
