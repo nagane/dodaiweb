@@ -248,6 +248,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   less-rails
+  omniauth
   omniauth-github
   pg
   rails (= 4.1.4)

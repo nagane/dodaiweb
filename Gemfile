@@ -66,4 +66,5 @@ end
 # Github login
 
 gem 'devise'
+gem 'omniauth'
 gem 'omniauth-github'
