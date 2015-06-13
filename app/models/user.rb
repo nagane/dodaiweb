@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   # http://qiita.com/awakia/items/03dd68dea5f15dc46c15
   has_many :social_profiles, dependent: :destroy
   devise :omniauthable
-  #def social_profile(provider)
-  #  social_profiles.select{ |sp| sp.provider == provider.to_s }.first
-  #end
+  def social_profile(provider)
+    social_profiles.select{ |sp| sp.provider == provider.to_s }.first
+  end
 end
